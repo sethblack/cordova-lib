@@ -43,7 +43,7 @@ function clone(git_url, git_ref, clone_dir){
     shell.rm('-rf', tmp_dir);
     shell.mkdir('-p', tmp_dir);
 
-    var cmd = globalUtil.format('git clone "%s" "%s"', git_url, tmp_dir);
+    var cmd = globalUtil.format('git clone --recursive "%s" "%s"', git_url, tmp_dir);
     events.emit('verbose', 'Cloning repository via git-clone command: ' + cmd);
 
     return Q.ninvoke(child_process, 'exec', cmd, {}).then(function () {
